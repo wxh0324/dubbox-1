@@ -15,10 +15,7 @@
  */
 package com.alibaba.dubbo.governance.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentMap;
 
@@ -424,13 +421,11 @@ public class ProviderServiceImpl extends AbstractService implements ProviderServ
             return ret;
         }
         String[] methods = value.split(ParseUtils.METHOD_SPLIT);
-        if (methods == null || methods.length == 0) {
+        if (methods.length == 0) {
             return ret;
         }
-        
-        for(String m : methods) {
-            ret.add(m);
-        }
+
+        Collections.addAll(ret, methods);
         return ret;
     }
 
@@ -453,7 +448,7 @@ public class ProviderServiceImpl extends AbstractService implements ProviderServ
         }
         else { 
             Long key = ret.entrySet().iterator().next().getKey();
-            return new Pair<Long, URL>(key, ret.get(key));
+            return new Pair<>(key, ret.get(key));
         }
     }
     
