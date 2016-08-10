@@ -47,7 +47,7 @@ public class ContextFilterTest {
     public void testSetContext() {
         invocation = EasyMock.createMock(Invocation.class);
         EasyMock.expect(invocation.getMethodName()).andReturn("$enumlength").anyTimes();
-        EasyMock.expect(invocation.getParameterTypes()).andReturn(new Class<?>[] { Enum.class }).anyTimes();
+//        EasyMock.expect(invocation.getParameterTypes()).andReturn(new Class<?>[] { Enum.class }).anyTimes();
         EasyMock.expect(invocation.getArguments()).andReturn(new Object[] { "hello" }).anyTimes();
         EasyMock.expect(invocation.getAttachments()).andReturn(null).anyTimes();
         EasyMock.replay(invocation);

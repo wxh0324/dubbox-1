@@ -117,9 +117,7 @@ public class DubboInvoker<T> extends AbstractInvoker<T> {
 
     public void destroy() {
         //防止client被关闭多次.在connect per jvm的情况下，client.close方法会调用计数器-1，当计数器小于等于0的情况下，才真正关闭
-        if (super.isDestroyed()){
-            return ;
-        } else {
+        if (!super.isDestroyed()) {
             //dubbo check ,避免多次关闭
             destroyLock.lock();
             try{
@@ -137,7 +135,7 @@ public class DubboInvoker<T> extends AbstractInvoker<T> {
                         logger.warn(t.getMessage(), t);
                     }
                 }
-                
+
             }finally {
                 destroyLock.unlock();
             }
